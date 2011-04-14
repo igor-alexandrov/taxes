@@ -1,0 +1,22 @@
+!!!
+
+%html
+  %head
+    %meta{:content=>"text/html; charset=utf-8", "http-equiv"=>"Content-type"}
+    %title
+      -if yield(:title)
+        = h yield(:title)
+      -else
+        Taxes — Only we know how much you would pay!
+    =stylesheets
+    =javascripts
+
+  %body
+    :javascript
+      document.body.id = "js";
+    
+    .content
+      .l-centered
+        =yield
+        .clearfix    
+    .clearfix    

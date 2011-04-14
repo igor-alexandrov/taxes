@@ -1,0 +1,159 @@
+* {
+  margin: 0;
+/*  padding: 0;*/
+}
+
+html,
+body {
+  /* * all ie6-7 */
+  /* _ ie6 */
+  _height: 100%;  
+  min-width: 980px;
+  width:expression(document.body.clientWidth < 980? "980px");
+}
+
+html {
+  height: 100%;
+  overflow: auto; /* Иначе у IE6 начинаются проблемки с вертикальной полосой прокрутки */
+  font-size: 100.01%;
+}
+
+* html body {
+    height: 100%; /* IE 6 */
+}
+
+html > body { /* Все остальные */
+    min-height: 100%;
+    height: auto;
+}
+
+body {
+  font-family: "Arial", "Verdana", sans-serif;
+  height: auto;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative; /* Так как #footer мы планируем позиционировать относительно body */
+  font-size: 0.8125em;
+  color: #333;
+}
+
+img {
+  border: 0 none;
+}
+
+.footer {
+/*  background: #EFEFEF;*/
+  border-top: 2px solid #DDDDDD;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 70px;
+ 	padding: 10px 0 0;
+ 	width: 100%;
+}
+
+.content {
+  width: 100%;
+  padding-top: 1px; /* чтобы предотвратить "схлопывание" границ, если у первого дочернего элемента не нулевой margin-top */
+  padding-bottom: 120px; /* #footer.offsetHeight + #content.desired-paddingBottom */
+}
+
+/* отцентрированный лэйаут */
+.l-centered {
+  margin: 0 auto;
+  padding: 0 40px;
+  min-width: 900px;
+  max-width: 1050px;
+  -width: 984px;
+}
+
+p {
+  margin: 0.3em 0 0.5em;
+}
+
+/* headers */
+h1 {
+  font-size: 1.6923em;
+  font-weight: normal;
+  color: #333333;
+  padding: 0.1em;
+  margin: 0.5em 0;
+  font-family: "Trebuchet MS", Arial, sans-serif;
+}
+
+h2 {
+  color: #333333;
+  padding: 0.4em 0 0.4em;
+  border-bottom: 1px dotted #565656;
+  font-family: "Arial","Verdana",sans-serif;
+  font-weight: bold;
+  margin: 0.2em 0;
+  font-size: 14px;
+}
+
+h2 > span {
+  font-size: 13px;
+  font-weight: normal;
+}
+
+
+/* отображение дат */
+.date {
+  font-style: italic;
+	font-size: 0.9230em;
+}
+
+/* таблицы */
+.table {
+  border-collapse: collapse;
+}
+
+.table .header__row {
+  height: 34px;
+}
+
+.table tr.selected, .table tr.focused {
+  background-color: #E5F6FE;
+}
+
+.table th {
+  border-top: 2px solid #CCCCCC;
+}
+
+.table th, .table td {
+  margin: 0;
+  padding: 5px 10px;
+  border-bottom: 1px solid #CCCCCC;
+}
+
+.table th.center, .table td.center {
+  text-align: center;
+}
+
+.table th a { color: #333333; }
+.table th a:hover { color: #444444; }
+
+
+/* links */
+a:link, a:visited, a:active,.pseudolink {
+  color: #035F96;
+  cursor: pointer;
+}
+
+a:hover,
+.pseudolink:hover {
+  color: #0088b9;
+}
+
+.pseudolink {
+  text-decoration: none;
+}
+
+#js .pseudolink:hover {
+  text-decoration: none;
+}
+
+#js .pseudolink__value {
+  border-bottom: 1px dotted;
+}

@@ -1,0 +1,313 @@
+/* класс формы с простым красивым форматированием */
+.f {
+	margin: 10px 0;
+	padding: 0;
+}
+
+.f_top {
+	margin: 0 0 10px;
+}
+
+.f_separate {
+	margin: 25px 0 10px;
+}
+
+/* "глаз" для поля ввода пароля */
+.f__eye {
+	display: block;
+	width: 25px;
+	height: 25px;
+
+	cursor: pointer;
+	cursor: hand;
+
+	margin: 0 -25px -25px 0;
+
+	position: relative;
+	left: -30px;
+
+	z-index: 1;
+}
+
+.f__eye ins {
+	display: block;
+	width: 16px;
+	height: 8px;
+
+	line-height: 8px;
+	overflow: hidden;
+
+	position: relative;
+	left: 4px;
+	top: 9px;
+
+	z-index: 1;
+
+	background: url('/i/eyes.gif') no-repeat 0 -8px;
+}
+
+.f legend {
+	display: block !important;
+	
+	color: #630c0e;
+	
+	font-weight: bold;
+	
+	padding: 0 0 0.8em;
+}
+
+.f__eye_open ins {
+	background-position: 0 0;
+}
+
+/* поле ввода текста или пароля */
+.f__input {
+  font-size: 12px;
+	box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+textarea.f__input {
+  max-height: 300px;
+  font-family: Arial, sans-serif;
+  padding: 2px;
+}
+
+/* этот модификатор только в случае наличия индикатора */
+.f__input_indicator {
+	float: left;
+}
+
+.f__field {
+	margin: 0 0 1em;
+}
+/* последнее поле в группе полей ввода */
+.f__field_last {
+	margin-bottom: 0;
+}
+
+.f__field.separate {
+	margin: 2em 0 1em;
+}
+
+
+/* поле с условими сервиса в группе полей ввода */
+.f__field_terms {
+	margin-top: 20px;
+}
+
+
+.f label {
+	line-height: 18px;
+}
+
+.f option {
+  padding: 0 0.5em;
+}
+
+/* лейбл для чекбокса условий сервиса (много маленького текста) */
+.f label.f__terms {
+	font-size: 0.8461em;
+	line-height: 1.1em;
+}
+
+.f fieldset {
+	border: 0;
+
+	padding: 0;
+	margin: 0 0 5px;
+}
+
+.f fieldset.f__indent {
+	margin-top: 1.8em;
+}
+
+/* дополнительные ссылки справа от кнопки формы */
+.f__additional_actions {
+/*  float: right;*/
+  line-height: 20px;
+}
+
+.f__additional_actions a {
+  margin-left: 2em;
+}
+
+/* сэмпл ввода */
+.f__sample {
+  font-size: 1em;
+	color: #565656;
+	font-style: italic;
+	padding: 2px 0;
+/*  font-family: georgia,serif;*/
+  font-family: "Trebuchet MS", Arial, sans-serif;
+	display: inline-block;
+}
+
+/* индикатор ввода на js */
+.f__indicator {
+	display: none;
+}
+
+#js .f__indicator {
+	display: block;
+	float: left;
+
+	width: 8px;
+	height: 8px;
+
+	line-height: 8px;
+	overflow: hidden;
+
+	margin: 7px 0 0 8px;
+
+	background: #FF4500;
+}
+
+#js .f__indicator_ok {
+	background: #FFF url('/i/ok.gif');
+
+	display: none;
+}
+
+#js .f__indicator__text {
+	display: block;
+	float: left;
+
+	margin: 3px 0 0 7px;
+
+	color: #FF4500;
+}
+
+/* --- tables --- */
+.f__table {
+  border: 0 none;
+  border-collapse: collapse;
+  width: auto;
+  margin-bottom: 0.5em;
+}
+
+.f__table td {
+  padding-right: 1em !important;
+}
+
+.f__table.divided td {
+  padding-bottom: 0.5em !important;
+}
+
+.f__table td.last {
+  padding-right: 0;
+}
+
+.f__table td.operations {
+  padding: 0 1em !important;
+}
+
+.f__table p {
+  margin: 0 0 0.5em !important;
+}
+
+/* lists */
+.f__list {
+  list-style-type: none;
+}
+
+.f__list li{
+  padding: 0.5em 0;
+}
+
+.f__horizontal_list {
+  list-style-type: none;
+}
+
+.f__horizontal_list li {
+  display: inline;
+  font-size: 1em;
+}
+
+/* mandatory indicator */
+.f__mandatory_indicator {
+  color: #FF4500;
+  position: relative;
+  top: 5px;
+  font-size: 16px;
+}
+
+/* headings */
+h2.f__h2 {
+  margin: 0 0 0.7em;
+}
+
+/* --- reset --- */
+/*form.f input.f__input,
+#content form.f input[type=password] {
+  width: auto;
+}
+*/
+form.f label {
+	display: inline !important;
+}
+
+/* --- status --- */
+.form-status {
+  overflow: hidden;
+}
+
+.form-status .form__errors {
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  background-color: #FAFAFA;
+  border-color: #F8F8F8 #EAEAEA #D4D4D4;
+  border-style: solid;
+  border-width: 1px;
+  display: block;
+  padding: 0.5em 1.2em;
+  margin: 0 0 1em 0;
+}
+
+.form-status .form__message {
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  background-color: #FAFAFA;
+  border-color: #F8F8F8 #EAEAEA #D4D4D4;
+  border-style: solid;
+  border-width: 1px;
+  display: block;
+  padding: 0.5em 1.2em;
+  margin: 0 0 1em 0;  
+}
+
+.form-status h3 {
+  color: #FF4500;
+  font-size: 100%;
+}
+
+.form__status.form__status-success h3 {
+  color: #68731A;
+  font-size: 100%;
+}
+
+.form-status .form__errors ul {
+  list-style-type: square;
+  padding: 0 1em;
+/*  font-size: 0.9em;*/
+  color: #565656;
+}
+
+.form-status .form__errors li {
+  padding: 0.1em;
+}
+
+.form__errors-inline {
+  padding: 0.2em 0;
+  font-size: 0.9em;
+  color: #565656;
+  list-style: none;
+}
+
+.form__errors-inline .form__errors__indicator {
+  padding: 0 0.3em 0 0.5em;
+  color: #FF4500;
+}

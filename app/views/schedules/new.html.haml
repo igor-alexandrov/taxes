@@ -1,0 +1,12 @@
+%h1
+  New Payment Schedule 
+
+-form_for @schedule, schedules_path, :html => { :class => 'f' } do |f|
+  %p.f__field  
+    =f.label :annual_amount, 'Annual amount ($)'
+    =f.text_field :annual_amount
+  %p.f__field    
+    =f.label :first_payment_at
+    =f.date_select :first_payment_at
+  %p.f__field
+    =f.submit "Create Payment Schedule"

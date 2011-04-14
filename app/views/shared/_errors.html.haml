@@ -1,0 +1,9 @@
+%div{ :id => "#{object.class.to_s.underscore.downcase.singularize.gsub('/','_')}-form-status", :class => 'form-status' }
+  -if object.errors.any?
+    %div.form__errors
+      %h3
+        Errors:
+      %ul
+        -object.errors.full_messages.each do |message|
+          %li
+            =message
