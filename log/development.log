@@ -6692,3 +6692,68 @@ ActionController::RoutingError (No route matches "/schedules/images/loading.gif"
   haml (3.0.25) rails/./lib/sass/plugin/rack.rb:41:in `call'
 
 Rendering rescues/layout (not_found)
+
+
+Processing SchedulesController#show (for 127.0.0.1 at 2011-04-15 00:33:51) [GET]
+  Parameters: {"id"=>"19"}
+  [4;36;1mSchedule Load (0.2ms)[0m   [0;1mSELECT * FROM "schedules" WHERE ("schedules"."id" = 19) [0m
+Rendering template within layouts/application
+Rendering schedules/show
+  [4;35;1mPayment Load (1.6ms)[0m   [0mSELECT * FROM "payments" WHERE ("payments".schedule_id = 19) [0m
+Completed in 104ms (View: 62, DB: 2) | 200 OK [http://127.0.0.1/schedules/19]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2011-04-15 00:33:52) [GET]
+
+ActionController::RoutingError (No route matches "/schedules/%22http://127.0.0.1:3000/i/facybox/fancy_shadow_nw.png%22" with {:method=>:get}):
+  haml (3.0.25) rails/./lib/sass/plugin/rack.rb:41:in `call'
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2011-04-15 00:33:52) [GET]
+
+ActionController::RoutingError (No route matches "/schedules/%22http://127.0.0.1:3000/i/facybox/fancy_shadow_n.png%22" with {:method=>:get}):
+  haml (3.0.25) rails/./lib/sass/plugin/rack.rb:41:in `call'
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2011-04-15 00:33:52) [GET]
+
+ActionController::RoutingError (No route matches "/schedules/%22http://127.0.0.1:3000/i/facybox/fancy_shadow_w.png%22" with {:method=>:get}):
+  haml (3.0.25) rails/./lib/sass/plugin/rack.rb:41:in `call'
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2011-04-15 00:33:52) [GET]
+
+ActionController::RoutingError (No route matches "/schedules/%22http://127.0.0.1:3000/i/facybox/fancy_closebox.png%22" with {:method=>:get}):
+  haml (3.0.25) rails/./lib/sass/plugin/rack.rb:41:in `call'
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2011-04-15 00:33:52) [GET]
+
+ActionController::RoutingError (No route matches "/schedules/%22http://127.0.0.1:3000/i/facybox/fancy_shadow_e.png%22" with {:method=>:get}):
+  haml (3.0.25) rails/./lib/sass/plugin/rack.rb:41:in `call'
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2011-04-15 00:33:52) [GET]
+
+ActionController::RoutingError (No route matches "/schedules/%22http://127.0.0.1:3000/i/facybox/fancy_shadow_s.png%22" with {:method=>:get}):
+  haml (3.0.25) rails/./lib/sass/plugin/rack.rb:41:in `call'
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2011-04-15 00:33:52) [GET]
+
+ActionController::RoutingError (No route matches "/schedules/images/loading.gif" with {:method=>:get}):
+  haml (3.0.25) rails/./lib/sass/plugin/rack.rb:41:in `call'
+
+Rendering rescues/layout (not_found)
