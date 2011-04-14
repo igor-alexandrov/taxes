@@ -4,7 +4,7 @@ module ApplicationHelper
     stylesheet_link_tag 'common',
       'facybox',
       'form',
-      :cache => 'cache/assets'
+      :cache => true
   end
 
   def javascripts
@@ -12,7 +12,7 @@ module ApplicationHelper
       'jrails',
       'facybox',
       'application',
-      :cache => 'cache/assets'
+      :cache => true
   end
   
   def format_date(date)
