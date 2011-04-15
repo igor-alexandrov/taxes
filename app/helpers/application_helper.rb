@@ -2,7 +2,7 @@
 module ApplicationHelper
   def stylesheets
     stylesheet_link_tag 'common',
-      'facybox',
+      'jquery.fancybox',
       'form',
       :cache => true
   end
@@ -10,7 +10,7 @@ module ApplicationHelper
   def javascripts
     javascript_include_tag 'jquery',
       'jrails',
-      'facybox',
+      'jquery.fancybox.pack',
       'application',
       :cache => true
   end

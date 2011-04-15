@@ -1,7 +1,12 @@
 %h1
   New Payment Schedule 
 
--form_for @schedule, schedules_path, :html => { :class => 'f' } do |f|
+-form_for :schedule, @schedule, :url => schedules_path, :html => { :class => 'f' } do |f|
+  =render :partial => '/shared/errors', :locals => { :object => @schedule }    
+  %p.f__field  
+    =f.label :type
+    =f.select :type, options_for_select([["Monthly", "Schedule::Monthly"], ["Quarterly", "Schedule::Quarterly"], ["Semi-Annually", "Schedule::SemiAnnually"], ["Annually", "Schedule::Annually"]])
+  
   %p.f__field  
     =f.label :annual_amount, 'Annual amount ($)'
     =f.text_field :annual_amount

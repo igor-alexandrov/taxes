@@ -1,12 +1,12 @@
 %div{ :style => 'width: 400px' }
   %h2
     Override amount
-  -remote_form_for @payment, :url => update_estimated_amount_schedule_payment_path(@payment.schedule_id, @payment), :html => { :class => 'f' } do |f|
-    =render :partial => '/shared/errors', :locals => { :object => @payment }
+  -remote_form_for :payment, @estimated_payment, :url => update_amount_schedule_payment_path(@estimated_payment.schedule_id, @estimated_payment), :html => { :class => 'f' } do |f|
+    =render :partial => '/shared/errors', :locals => { :object => @estimated_payment }
     %p.f__field
       Minimal value for amount is
       %b
-        =@payment.estimated_amount.round(2)
+        =@estimated_payment.estimated_amount.round(2)
     %p.f__field
       =f.label :amount, 'Enter new value'
       =f.text_field :amount

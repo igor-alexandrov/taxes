@@ -1,13 +1,23 @@
+=link_to "New Schedule", new_schedule_path
+
 %h1
   Schedule 
   =precede '#' do
     =@schedule.id
 
+%h2.noborder
+  =number_to_currency @schedule.paid_amount
+  \/
+  =number_to_currency @schedule.total_amount
+  
 :javascript
   jQuery(document).ready(function(){
-    $('a[rel*=facybox]').facybox();
+    $('a[rel*=fancybox]').fancybox({
+      'showNavArrows' : false,
+      'scrolling'		  : 'no',
+    	'titleShow'		  : false
+    });
   });
-
 
 %table.table
   %thead
@@ -15,22 +25,45 @@
       %th
         \#
       %th
-        Paid?
-      %th
-        Due Date
+        Due date
       %th
         Amount
       %th
-  -@schedule.payments.all.each_with_index do |p, index|
-    %tr
+      %th
+        Paid?
+      %th
+        Payment date
+        
+      %th
+        Payment method
+      
+      
+  -@schedule.estimated_payments.each_with_index do |p, index|
+    %tr{ :style => "#{ 'background-color: #E5F6FE' if p.paid? }" }
       %td
         =index + 1
       %td
-        =check_box_tag "estimated_payment_#{p.id}"      
-      %td
         =content_tag(:span, format_date(p.due_at), :class => 'date', :title => p.due_at)
-      %td
+      %td        
         =p.amount.round(2)
+        -if p.overriden?
+          %b{:title => 'Overriden', :style => 'color: #68731A;'}
+            \!
       %td
-        =link_to content_tag(:span, 'override amount', :class => 'pseudolink__value'), override_estimated_amount_schedule_payment_path(@schedule, p), :class => 'pseudolink', :rel => 'facybox'
-  
+        -if p.unpaid?
+          =link_to content_tag(:span, 'override amount', :class => 'pseudolink__value'), override_estimated_amount_schedule_payment_path(@schedule, p), :class => 'pseudolink', :rel => 'fancybox'
+      %td
+        =check_box_tag "estimated_payment[#{p.id}]", 'paid', p.paid?, :class => 'estimated_payment_checker', :href => payment_form_for_schedule_payment_path(@schedule, p), :disabled => p.paid?
+        
+      %td
+        -if p.paid?
+          =content_tag(:span, format_date(p.payment.paid_at), :class => 'date', :title => p.payment.paid_at)
+      %td
+        -if p.paid?
+          -if p.payment.is_a?(Payment::Check)
+            Check
+            \#
+            =p.payment.check_number
+            
+          -if p.payment.is_a?(Payment::Transfer)
+            Transfer

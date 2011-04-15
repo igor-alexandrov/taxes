@@ -1,0 +1,38 @@
+:javascript
+  $(document).ready(function(){
+    if ($('#payment_type').val() == 'transfer') {
+      $('#check_number_group').hide();
+      $('#payment_check_number').val('');
+    }
+    
+    $('#payment_type').live('change', function(event) {
+      if ($(this).val() == 'transfer') {
+        $('#check_number_group').hide();
+        $('#payment_check_number').val('');
+      } else {
+        $('#check_number_group').show();
+      }
+      
+      
+    });
+  })
+  
+%div{ :style => 'width: 400px' }
+  %h2
+    Make a payment
+  -remote_form_for :payment, @payment, :url => pay_for_schedule_payment_path(@estimated_payment.schedule_id, @estimated_payment), :html => { :class => 'f' } do |f|
+    =render :partial => '/shared/errors', :locals => { :object => @payment }    
+    %p.f__field    
+      =f.label :paid_at
+      =f.date_select :paid_at
+    
+    %p.f__field    
+      =f.label :type
+      =f.select :type, options_for_select([["Check", "check"], ["Transfer", "transfer"]])
+    
+    %p#check_number_group.f__field    
+      =f.label :check_number, 'Check #'
+      =f.text_field :check_number
+        
+    %p.f__field
+      =f.submit "Save payment"

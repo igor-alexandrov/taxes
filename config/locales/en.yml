@@ -5,5 +5,8 @@ en:
   activerecord:
     errors:
       models:
-        payment:
-          estimated_amount_cannot_be_reduced: Estimated amount cannot be reduced
+        estimated_payment:
+          amount_cannot_be_reduced: Amount cannot be reduced
+          amount_cannot_be_more_then_annual_amount: Amount cannot be more then annual amount
+          amount_cannot_be_more_then_dept_amount: Amount cannot be more then dept amount
+          amount_is_too_big: Amount is too big

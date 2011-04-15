@@ -55,8 +55,7 @@ img {
 
 .content {
   width: 100%;
-  padding-top: 1px; /* чтобы предотвратить "схлопывание" границ, если у первого дочернего элемента не нулевой margin-top */
-  padding-bottom: 120px; /* #footer.offsetHeight + #content.desired-paddingBottom */
+  padding: 10px 0;
 }
 
 /* отцентрированный лэйаут */
@@ -95,6 +94,10 @@ h2 {
 h2 > span {
   font-size: 13px;
   font-weight: normal;
+}
+
+h2.noborder {
+  border: 0 none;
 }
 
 

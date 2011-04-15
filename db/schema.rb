@@ -9,20 +9,29 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110414121133) do
+ActiveRecord::Schema.define(:version => 20110415061232) do
 
-  create_table "payments", :force => true do |t|
+  create_table "estimated_payments", :force => true do |t|
     t.integer  "schedule_id"
-    t.string   "status"
     t.float    "estimated_amount"
     t.float    "amount"
     t.date     "raw_due_at"
     t.date     "due_at"
+    t.integer  "payment_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "payments", ["schedule_id"], :name => "index_payments_on_schedule_id"
+  add_index "estimated_payments", ["schedule_id"], :name => "index_estimated_payments_on_schedule_id"
+
+  create_table "payments", :force => true do |t|
+    t.integer  "estimated_payment_id"
+    t.string   "type"
+    t.string   "check_number"
+    t.datetime "paid_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "schedules", :force => true do |t|
     t.float    "annual_amount"

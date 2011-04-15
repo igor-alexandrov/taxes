@@ -1,9 +1,7 @@
-class CreatePayments < ActiveRecord::Migration
+class CreateEstimatedPayments < ActiveRecord::Migration
   def self.up
-    create_table :payments do |t|
+    create_table :estimated_payments do |t|
       t.integer :schedule_id
-      
-      t.string :status
       
       t.float :estimated_amount
       t.float :amount
@@ -11,13 +9,15 @@ class CreatePayments < ActiveRecord::Migration
       t.date :raw_due_at
       t.date :due_at
       
+      t.integer :payment_id
+      
       t.timestamps
     end
     
-    add_index :payments, :schedule_id
+    add_index :estimated_payments, :schedule_id
   end
 
   def self.down
-    drop_table :payments
+    drop_table :estimated_payments
   end
 end
