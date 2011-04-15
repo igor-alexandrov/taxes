@@ -2,7 +2,7 @@ class EstimatedPayment < ActiveRecord::Base
   belongs_to :schedule, :class_name => 'Schedule::Base'
   belongs_to :payment, :class_name => 'Payment::Base'
     
-  named_scope :unpaid, :conditions => [ %Q{ "#{self.table_name}".'payment_id' IS NULL }]
+  named_scope :unpaid, :conditions => [ %Q{ "#{self.table_name}".payment_id IS NULL }]
   named_scope :paid, :conditions => [ %Q{ "#{self.table_name}".payment_id IS NOT NULL }]  
   
   def validate

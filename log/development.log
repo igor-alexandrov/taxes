@@ -18632,3 +18632,187 @@ Rendering template within layouts/application
 Rendering schedules/show
   [4;35;1mEstimatedPayment Load (3.6ms)[0m   [0mSELECT * FROM "estimated_payments" WHERE ("estimated_payments".schedule_id = 30) AND ( "estimated_payments".payment_id IS NOT NULL ) [0m
 Completed in 69ms (View: 24, DB: 5) | 200 OK [http://127.0.0.1/schedules/30]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2011-04-15 16:21:11) [GET]
+
+ActionController::RoutingError (No route matches "/rss" with {:method=>:get}):
+  haml (3.0.25) rails/./lib/sass/plugin/rack.rb:41:in `call'
+
+Rendering rescues/layout (not_found)
+
+
+Processing PaymentsController#override_estimated_amount (for 127.0.0.1 at 2011-04-15 16:22:09) [GET]
+  Parameters: {"schedule_id"=>"30", "id"=>"137"}
+  [4;36;1mEstimatedPayment Load (0.2ms)[0m   [0;1mSELECT * FROM "estimated_payments" WHERE ("estimated_payments"."id" = 137) [0m
+Rendered shared/_errors (0.3ms)
+Rendered payments/_override_estimated_amount (3.3ms)
+Completed in 9ms (View: 4, DB: 0) | 200 OK [http://127.0.0.1/schedules/30/payments/137/override_estimated_amount]
+
+
+Processing PaymentsController#update_amount (for 127.0.0.1 at 2011-04-15 16:22:12) [POST]
+  Parameters: {"authenticity_token"=>"3Cs6PSkXKDjCZT0+kvRuuWn+azwfgOukJV/3wgAH7kg=", "schedule_id"=>"30", "id"=>"137", "payment"=>{"amount"=>"3000"}}
+  [4;35;1mEstimatedPayment Load (0.4ms)[0m   [0mSELECT * FROM "estimated_payments" WHERE ("estimated_payments"."id" = 137) [0m
+  [4;36;1mSchedule::Base Load (0.2ms)[0m   [0;1mSELECT * FROM "schedules" WHERE ("schedules"."id" = 30) [0m
+  [4;35;1mEstimatedPayment Load (0.2ms)[0m   [0mSELECT * FROM "estimated_payments" WHERE ("estimated_payments".schedule_id = 30) AND ( "estimated_payments".payment_id IS NOT NULL ) [0m
+  [4;36;1mEstimatedPayment Load (0.2ms)[0m   [0;1mSELECT * FROM "estimated_payments" WHERE ("estimated_payments".schedule_id = 30) AND ( "estimated_payments".'payment_id' IS NULL ) [0m
+  [4;35;1mEstimatedPayment Update (0.3ms)[0m   [0mUPDATE "estimated_payments" SET "updated_at" = '2011-04-15 12:22:12', "amount" = 3000.0 WHERE "id" = 137[0m
+  [4;36;1mEstimatedPayment Load (0.3ms)[0m   [0;1mSELECT * FROM "estimated_payments" WHERE ("estimated_payments".schedule_id = 30) AND ( "estimated_payments".'payment_id' IS NULL ) [0m
+  [4;35;1mEstimatedPayment Load (0.2ms)[0m   [0mSELECT * FROM "estimated_payments" WHERE ("estimated_payments".schedule_id = 30) AND ( "estimated_payments".payment_id IS NOT NULL ) [0m
+  [4;36;1mEstimatedPayment Update (0.1ms)[0m   [0;1mUPDATE "estimated_payments" SET estimated_amount = 1750.0 WHERE ("estimated_payments"."id" IN (138,139,140,141)) [0m
+Completed in 30ms (View: 1, DB: 2) | 200 OK [http://127.0.0.1/schedules/30/payments/137/update_amount]
+
+
+Processing SchedulesController#show (for 127.0.0.1 at 2011-04-15 16:22:12) [GET]
+  Parameters: {"id"=>"30"}
+  [4;35;1mSchedule::Base Load (0.2ms)[0m   [0mSELECT * FROM "schedules" WHERE ("schedules"."id" = 30) [0m
+  [4;36;1mEstimatedPayment Load (0.5ms)[0m   [0;1mSELECT "estimated_payments".* FROM "estimated_payments" WHERE ("estimated_payments".schedule_id = 30) [0m
+  [4;35;1mPayment::Base Load (0.2ms)[0m   [0mSELECT * FROM "payments" WHERE ("payments"."id" = 18) [0m
+Rendering template within layouts/application
+Rendering schedules/show
+  [4;36;1mEstimatedPayment Load (0.5ms)[0m   [0;1mSELECT * FROM "estimated_payments" WHERE ("estimated_payments".schedule_id = 30) AND ( "estimated_payments".payment_id IS NOT NULL ) [0m
+Completed in 71ms (View: 47, DB: 1) | 200 OK [http://127.0.0.1/schedules/30]
+
+
+Processing SchedulesController#new (for 127.0.0.1 at 2011-04-15 16:22:21) [GET]
+Rendering template within layouts/application
+Rendering schedules/new
+Rendered shared/_errors (0.3ms)
+Completed in 21ms (View: 10, DB: 0) | 200 OK [http://127.0.0.1/schedules/new]
+
+
+Processing SchedulesController#create (for 127.0.0.1 at 2011-04-15 16:22:25) [POST]
+  Parameters: {"commit"=>"Create Payment Schedule", "schedule"=>{"annual_amount"=>"50000", "first_payment_at(1i)"=>"2011", "type"=>"Schedule::Monthly", "first_payment_at(2i)"=>"4", "first_payment_at(3i)"=>"15"}, "authenticity_token"=>"3Cs6PSkXKDjCZT0+kvRuuWn+azwfgOukJV/3wgAH7kg="}
+  [4;35;1mSchedule::Monthly Create (0.4ms)[0m   [0mINSERT INTO "schedules" ("first_payment_at", "annual_amount", "type") VALUES('2011-04-15 00:00:00', 50000.0, 'Schedule::Monthly')[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "estimated_payments" WHERE ("estimated_payments".schedule_id = 31) [0m
+  [4;35;1mEstimatedPayment Create (0.3ms)[0m   [0mINSERT INTO "estimated_payments" ("raw_due_at", "created_at", "updated_at", "amount", "schedule_id", "estimated_amount", "payment_id", "due_at") VALUES('2011-04-15 00:00:00', '2011-04-15 12:22:25', '2011-04-15 12:22:25', NULL, 31, 4166.67, NULL, '2011-04-15 00:00:00')[0m
+  [4;36;1mEstimatedPayment Create (0.1ms)[0m   [0;1mINSERT INTO "estimated_payments" ("raw_due_at", "created_at", "updated_at", "amount", "schedule_id", "estimated_amount", "payment_id", "due_at") VALUES('2011-05-15 00:00:00', '2011-04-15 12:22:25', '2011-04-15 12:22:25', NULL, 31, 4166.67, NULL, '2011-05-13 00:00:00')[0m
+  [4;35;1mEstimatedPayment Create (0.2ms)[0m   [0mINSERT INTO "estimated_payments" ("raw_due_at", "created_at", "updated_at", "amount", "schedule_id", "estimated_amount", "payment_id", "due_at") VALUES('2011-06-15 00:00:00', '2011-04-15 12:22:25', '2011-04-15 12:22:25', NULL, 31, 4166.67, NULL, '2011-06-15 00:00:00')[0m
+  [4;36;1mEstimatedPayment Create (0.1ms)[0m   [0;1mINSERT INTO "estimated_payments" ("raw_due_at", "created_at", "updated_at", "amount", "schedule_id", "estimated_amount", "payment_id", "due_at") VALUES('2011-07-15 00:00:00', '2011-04-15 12:22:25', '2011-04-15 12:22:25', NULL, 31, 4166.67, NULL, '2011-07-15 00:00:00')[0m
+  [4;35;1mEstimatedPayment Create (0.2ms)[0m   [0mINSERT INTO "estimated_payments" ("raw_due_at", "created_at", "updated_at", "amount", "schedule_id", "estimated_amount", "payment_id", "due_at") VALUES('2011-08-15 00:00:00', '2011-04-15 12:22:25', '2011-04-15 12:22:25', NULL, 31, 4166.67, NULL, '2011-08-15 00:00:00')[0m
+  [4;36;1mEstimatedPayment Create (0.2ms)[0m   [0;1mINSERT INTO "estimated_payments" ("raw_due_at", "created_at", "updated_at", "amount", "schedule_id", "estimated_amount", "payment_id", "due_at") VALUES('2011-09-15 00:00:00', '2011-04-15 12:22:25', '2011-04-15 12:22:25', NULL, 31, 4166.67, NULL, '2011-09-15 00:00:00')[0m
+  [4;35;1mEstimatedPayment Create (0.3ms)[0m   [0mINSERT INTO "estimated_payments" ("raw_due_at", "created_at", "updated_at", "amount", "schedule_id", "estimated_amount", "payment_id", "due_at") VALUES('2011-10-15 00:00:00', '2011-04-15 12:22:25', '2011-04-15 12:22:25', NULL, 31, 4166.67, NULL, '2011-10-14 00:00:00')[0m
+  [4;36;1mEstimatedPayment Create (0.1ms)[0m   [0;1mINSERT INTO "estimated_payments" ("raw_due_at", "created_at", "updated_at", "amount", "schedule_id", "estimated_amount", "payment_id", "due_at") VALUES('2011-11-15 00:00:00', '2011-04-15 12:22:25', '2011-04-15 12:22:25', NULL, 31, 4166.67, NULL, '2011-11-15 00:00:00')[0m
+  [4;35;1mEstimatedPayment Create (0.1ms)[0m   [0mINSERT INTO "estimated_payments" ("raw_due_at", "created_at", "updated_at", "amount", "schedule_id", "estimated_amount", "payment_id", "due_at") VALUES('2011-12-15 00:00:00', '2011-04-15 12:22:25', '2011-04-15 12:22:25', NULL, 31, 4166.67, NULL, '2011-12-15 00:00:00')[0m
+  [4;36;1mEstimatedPayment Create (0.2ms)[0m   [0;1mINSERT INTO "estimated_payments" ("raw_due_at", "created_at", "updated_at", "amount", "schedule_id", "estimated_amount", "payment_id", "due_at") VALUES('2012-01-15 00:00:00', '2011-04-15 12:22:25', '2011-04-15 12:22:25', NULL, 31, 4166.67, NULL, '2012-01-13 00:00:00')[0m
+  [4;35;1mEstimatedPayment Create (0.1ms)[0m   [0mINSERT INTO "estimated_payments" ("raw_due_at", "created_at", "updated_at", "amount", "schedule_id", "estimated_amount", "payment_id", "due_at") VALUES('2012-02-15 00:00:00', '2011-04-15 12:22:25', '2011-04-15 12:22:25', NULL, 31, 4166.67, NULL, '2012-02-15 00:00:00')[0m
+  [4;36;1mEstimatedPayment Create (0.1ms)[0m   [0;1mINSERT INTO "estimated_payments" ("raw_due_at", "created_at", "updated_at", "amount", "schedule_id", "estimated_amount", "payment_id", "due_at") VALUES('2012-03-15 00:00:00', '2011-04-15 12:22:25', '2011-04-15 12:22:25', NULL, 31, 4166.63000000001, NULL, '2012-03-15 00:00:00')[0m
+  [4;35;1mEstimatedPayment Create (0.2ms)[0m   [0mINSERT INTO "estimated_payments" ("raw_due_at", "created_at", "updated_at", "amount", "schedule_id", "estimated_amount", "payment_id", "due_at") VALUES('2012-04-15 00:00:00', '2011-04-15 12:22:25', '2011-04-15 12:22:25', NULL, 31, 4166.67, NULL, '2012-04-13 00:00:00')[0m
+  [4;36;1mEstimatedPayment Create (0.2ms)[0m   [0;1mINSERT INTO "estimated_payments" ("raw_due_at", "created_at", "updated_at", "amount", "schedule_id", "estimated_amount", "payment_id", "due_at") VALUES('2012-05-15 00:00:00', '2011-04-15 12:22:25', '2011-04-15 12:22:25', NULL, 31, 4166.67, NULL, '2012-05-15 00:00:00')[0m
+  [4;35;1mEstimatedPayment Create (0.1ms)[0m   [0mINSERT INTO "estimated_payments" ("raw_due_at", "created_at", "updated_at", "amount", "schedule_id", "estimated_amount", "payment_id", "due_at") VALUES('2012-06-15 00:00:00', '2011-04-15 12:22:25', '2011-04-15 12:22:25', NULL, 31, 4166.67, NULL, '2012-06-15 00:00:00')[0m
+  [4;36;1mEstimatedPayment Create (0.2ms)[0m   [0;1mINSERT INTO "estimated_payments" ("raw_due_at", "created_at", "updated_at", "amount", "schedule_id", "estimated_amount", "payment_id", "due_at") VALUES('2012-07-15 00:00:00', '2011-04-15 12:22:25', '2011-04-15 12:22:25', NULL, 31, 4166.67, NULL, '2012-07-13 00:00:00')[0m
+  [4;35;1mEstimatedPayment Create (0.2ms)[0m   [0mINSERT INTO "estimated_payments" ("raw_due_at", "created_at", "updated_at", "amount", "schedule_id", "estimated_amount", "payment_id", "due_at") VALUES('2012-08-15 00:00:00', '2011-04-15 12:22:25', '2011-04-15 12:22:25', NULL, 31, 4166.67, NULL, '2012-08-15 00:00:00')[0m
+  [4;36;1mEstimatedPayment Create (0.2ms)[0m   [0;1mINSERT INTO "estimated_payments" ("raw_due_at", "created_at", "updated_at", "amount", "schedule_id", "estimated_amount", "payment_id", "due_at") VALUES('2012-09-15 00:00:00', '2011-04-15 12:22:25', '2011-04-15 12:22:25', NULL, 31, 4166.67, NULL, '2012-09-14 00:00:00')[0m
+  [4;35;1mEstimatedPayment Create (0.1ms)[0m   [0mINSERT INTO "estimated_payments" ("raw_due_at", "created_at", "updated_at", "amount", "schedule_id", "estimated_amount", "payment_id", "due_at") VALUES('2012-10-15 00:00:00', '2011-04-15 12:22:25', '2011-04-15 12:22:25', NULL, 31, 4166.67, NULL, '2012-10-15 00:00:00')[0m
+  [4;36;1mEstimatedPayment Create (0.1ms)[0m   [0;1mINSERT INTO "estimated_payments" ("raw_due_at", "created_at", "updated_at", "amount", "schedule_id", "estimated_amount", "payment_id", "due_at") VALUES('2012-11-15 00:00:00', '2011-04-15 12:22:25', '2011-04-15 12:22:25', NULL, 31, 4166.67, NULL, '2012-11-15 00:00:00')[0m
+  [4;35;1mEstimatedPayment Create (0.1ms)[0m   [0mINSERT INTO "estimated_payments" ("raw_due_at", "created_at", "updated_at", "amount", "schedule_id", "estimated_amount", "payment_id", "due_at") VALUES('2012-12-15 00:00:00', '2011-04-15 12:22:25', '2011-04-15 12:22:25', NULL, 31, 4166.67, NULL, '2012-12-14 00:00:00')[0m
+  [4;36;1mEstimatedPayment Create (0.2ms)[0m   [0;1mINSERT INTO "estimated_payments" ("raw_due_at", "created_at", "updated_at", "amount", "schedule_id", "estimated_amount", "payment_id", "due_at") VALUES('2013-01-15 00:00:00', '2011-04-15 12:22:25', '2011-04-15 12:22:25', NULL, 31, 4166.67, NULL, '2013-01-15 00:00:00')[0m
+  [4;35;1mEstimatedPayment Create (0.2ms)[0m   [0mINSERT INTO "estimated_payments" ("raw_due_at", "created_at", "updated_at", "amount", "schedule_id", "estimated_amount", "payment_id", "due_at") VALUES('2013-02-15 00:00:00', '2011-04-15 12:22:25', '2011-04-15 12:22:25', NULL, 31, 4166.67, NULL, '2013-02-15 00:00:00')[0m
+  [4;36;1mEstimatedPayment Create (1.3ms)[0m   [0;1mINSERT INTO "estimated_payments" ("raw_due_at", "created_at", "updated_at", "amount", "schedule_id", "estimated_amount", "payment_id", "due_at") VALUES('2013-03-15 00:00:00', '2011-04-15 12:22:25', '2011-04-15 12:22:25', NULL, 31, 4166.63000000001, NULL, '2013-03-15 00:00:00')[0m
+  [4;35;1mEstimatedPayment Create (0.2ms)[0m   [0mINSERT INTO "estimated_payments" ("raw_due_at", "created_at", "updated_at", "amount", "schedule_id", "estimated_amount", "payment_id", "due_at") VALUES('2013-04-15 00:00:00', '2011-04-15 12:22:25', '2011-04-15 12:22:25', NULL, 31, 4166.67, NULL, '2013-04-15 00:00:00')[0m
+  [4;36;1mEstimatedPayment Create (0.2ms)[0m   [0;1mINSERT INTO "estimated_payments" ("raw_due_at", "created_at", "updated_at", "amount", "schedule_id", "estimated_amount", "payment_id", "due_at") VALUES('2013-05-15 00:00:00', '2011-04-15 12:22:25', '2011-04-15 12:22:25', NULL, 31, 4166.67, NULL, '2013-05-15 00:00:00')[0m
+  [4;35;1mEstimatedPayment Create (0.2ms)[0m   [0mINSERT INTO "estimated_payments" ("raw_due_at", "created_at", "updated_at", "amount", "schedule_id", "estimated_amount", "payment_id", "due_at") VALUES('2013-06-15 00:00:00', '2011-04-15 12:22:25', '2011-04-15 12:22:25', NULL, 31, 4166.67, NULL, '2013-06-14 00:00:00')[0m
+  [4;36;1mEstimatedPayment Create (0.2ms)[0m   [0;1mINSERT INTO "estimated_payments" ("raw_due_at", "created_at", "updated_at", "amount", "schedule_id", "estimated_amount", "payment_id", "due_at") VALUES('2013-07-15 00:00:00', '2011-04-15 12:22:25', '2011-04-15 12:22:25', NULL, 31, 4166.67, NULL, '2013-07-15 00:00:00')[0m
+  [4;35;1mEstimatedPayment Create (0.2ms)[0m   [0mINSERT INTO "estimated_payments" ("raw_due_at", "created_at", "updated_at", "amount", "schedule_id", "estimated_amount", "payment_id", "due_at") VALUES('2013-08-15 00:00:00', '2011-04-15 12:22:25', '2011-04-15 12:22:25', NULL, 31, 4166.67, NULL, '2013-08-15 00:00:00')[0m
+  [4;36;1mEstimatedPayment Create (0.7ms)[0m   [0;1mINSERT INTO "estimated_payments" ("raw_due_at", "created_at", "updated_at", "amount", "schedule_id", "estimated_amount", "payment_id", "due_at") VALUES('2013-09-15 00:00:00', '2011-04-15 12:22:25', '2011-04-15 12:22:25', NULL, 31, 4166.67, NULL, '2013-09-13 00:00:00')[0m
+  [4;35;1mEstimatedPayment Create (0.2ms)[0m   [0mINSERT INTO "estimated_payments" ("raw_due_at", "created_at", "updated_at", "amount", "schedule_id", "estimated_amount", "payment_id", "due_at") VALUES('2013-10-15 00:00:00', '2011-04-15 12:22:25', '2011-04-15 12:22:25', NULL, 31, 4166.67, NULL, '2013-10-15 00:00:00')[0m
+  [4;36;1mEstimatedPayment Create (0.2ms)[0m   [0;1mINSERT INTO "estimated_payments" ("raw_due_at", "created_at", "updated_at", "amount", "schedule_id", "estimated_amount", "payment_id", "due_at") VALUES('2013-11-15 00:00:00', '2011-04-15 12:22:25', '2011-04-15 12:22:25', NULL, 31, 4166.67, NULL, '2013-11-15 00:00:00')[0m
+  [4;35;1mEstimatedPayment Create (0.3ms)[0m   [0mINSERT INTO "estimated_payments" ("raw_due_at", "created_at", "updated_at", "amount", "schedule_id", "estimated_amount", "payment_id", "due_at") VALUES('2013-12-15 00:00:00', '2011-04-15 12:22:25', '2011-04-15 12:22:25', NULL, 31, 4166.67, NULL, '2013-12-13 00:00:00')[0m
+  [4;36;1mEstimatedPayment Create (0.3ms)[0m   [0;1mINSERT INTO "estimated_payments" ("raw_due_at", "created_at", "updated_at", "amount", "schedule_id", "estimated_amount", "payment_id", "due_at") VALUES('2014-01-15 00:00:00', '2011-04-15 12:22:25', '2011-04-15 12:22:25', NULL, 31, 4166.67, NULL, '2014-01-15 00:00:00')[0m
+  [4;35;1mEstimatedPayment Create (0.2ms)[0m   [0mINSERT INTO "estimated_payments" ("raw_due_at", "created_at", "updated_at", "amount", "schedule_id", "estimated_amount", "payment_id", "due_at") VALUES('2014-02-15 00:00:00', '2011-04-15 12:22:25', '2011-04-15 12:22:25', NULL, 31, 4166.67, NULL, '2014-02-14 00:00:00')[0m
+  [4;36;1mEstimatedPayment Create (0.1ms)[0m   [0;1mINSERT INTO "estimated_payments" ("raw_due_at", "created_at", "updated_at", "amount", "schedule_id", "estimated_amount", "payment_id", "due_at") VALUES('2014-03-15 00:00:00', '2011-04-15 12:22:25', '2011-04-15 12:22:25', NULL, 31, 4166.63000000001, NULL, '2014-03-14 00:00:00')[0m
+Redirected to http://127.0.0.1:3000/schedules/31
+Completed in 258ms (DB: 9) | 302 Found [http://127.0.0.1/schedules]
+
+
+Processing SchedulesController#show (for 127.0.0.1 at 2011-04-15 16:22:25) [GET]
+  Parameters: {"id"=>"31"}
+  [4;35;1mSchedule::Base Load (0.2ms)[0m   [0mSELECT * FROM "schedules" WHERE ("schedules"."id" = 31) [0m
+  [4;36;1mEstimatedPayment Load (1.4ms)[0m   [0;1mSELECT "estimated_payments".* FROM "estimated_payments" WHERE ("estimated_payments".schedule_id = 31) [0m
+Rendering template within layouts/application
+Rendering schedules/show
+  [4;35;1mEstimatedPayment Load (0.2ms)[0m   [0mSELECT * FROM "estimated_payments" WHERE ("estimated_payments".schedule_id = 31) AND ( "estimated_payments".payment_id IS NOT NULL ) [0m
+Completed in 195ms (View: 172, DB: 2) | 200 OK [http://127.0.0.1/schedules/31]
+
+
+Processing PaymentsController#override_estimated_amount (for 127.0.0.1 at 2011-04-15 16:22:27) [GET]
+  Parameters: {"schedule_id"=>"31", "id"=>"142"}
+  [4;36;1mEstimatedPayment Load (0.2ms)[0m   [0;1mSELECT * FROM "estimated_payments" WHERE ("estimated_payments"."id" = 142) [0m
+Rendered shared/_errors (0.5ms)
+Rendered payments/_override_estimated_amount (4.6ms)
+Completed in 14ms (View: 5, DB: 0) | 200 OK [http://127.0.0.1/schedules/31/payments/142/override_estimated_amount]
+
+
+Processing PaymentsController#update_amount (for 127.0.0.1 at 2011-04-15 16:22:29) [POST]
+  Parameters: {"authenticity_token"=>"3Cs6PSkXKDjCZT0+kvRuuWn+azwfgOukJV/3wgAH7kg=", "schedule_id"=>"31", "id"=>"142", "payment"=>{"amount"=>""}}
+  [4;35;1mEstimatedPayment Load (0.2ms)[0m   [0mSELECT * FROM "estimated_payments" WHERE ("estimated_payments"."id" = 142) [0m
+Completed in 12ms (View: 1, DB: 0) | 200 OK [http://127.0.0.1/schedules/31/payments/142/update_amount]
+
+
+Processing SchedulesController#show (for 127.0.0.1 at 2011-04-15 16:22:29) [GET]
+  Parameters: {"id"=>"31"}
+  [4;36;1mSchedule::Base Load (0.3ms)[0m   [0;1mSELECT * FROM "schedules" WHERE ("schedules"."id" = 31) [0m
+  [4;35;1mEstimatedPayment Load (1.4ms)[0m   [0mSELECT "estimated_payments".* FROM "estimated_payments" WHERE ("estimated_payments".schedule_id = 31) [0m
+Rendering template within layouts/application
+Rendering schedules/show
+  [4;36;1mEstimatedPayment Load (0.3ms)[0m   [0;1mSELECT * FROM "estimated_payments" WHERE ("estimated_payments".schedule_id = 31) AND ( "estimated_payments".payment_id IS NOT NULL ) [0m
+Completed in 106ms (View: 72, DB: 2) | 200 OK [http://127.0.0.1/schedules/31]
+
+
+Processing PaymentsController#override_estimated_amount (for 127.0.0.1 at 2011-04-15 16:22:31) [GET]
+  Parameters: {"schedule_id"=>"31", "id"=>"142"}
+  [4;35;1mEstimatedPayment Load (0.2ms)[0m   [0mSELECT * FROM "estimated_payments" WHERE ("estimated_payments"."id" = 142) [0m
+Rendered shared/_errors (0.3ms)
+Rendered payments/_override_estimated_amount (3.3ms)
+Completed in 9ms (View: 4, DB: 0) | 200 OK [http://127.0.0.1/schedules/31/payments/142/override_estimated_amount]
+
+
+Processing PaymentsController#update_amount (for 127.0.0.1 at 2011-04-15 16:22:34) [POST]
+  Parameters: {"authenticity_token"=>"3Cs6PSkXKDjCZT0+kvRuuWn+azwfgOukJV/3wgAH7kg=", "schedule_id"=>"31", "id"=>"142", "payment"=>{"amount"=>"10000"}}
+  [4;36;1mEstimatedPayment Load (0.2ms)[0m   [0;1mSELECT * FROM "estimated_payments" WHERE ("estimated_payments"."id" = 142) [0m
+  [4;35;1mSchedule::Base Load (0.2ms)[0m   [0mSELECT * FROM "schedules" WHERE ("schedules"."id" = 31) [0m
+  [4;36;1mEstimatedPayment Load (0.2ms)[0m   [0;1mSELECT * FROM "estimated_payments" WHERE ("estimated_payments".schedule_id = 31) AND ( "estimated_payments".payment_id IS NOT NULL ) [0m
+  [4;35;1mEstimatedPayment Load (1.2ms)[0m   [0mSELECT * FROM "estimated_payments" WHERE ("estimated_payments".schedule_id = 31) AND ( "estimated_payments".'payment_id' IS NULL ) [0m
+  [4;36;1mEstimatedPayment Update (0.4ms)[0m   [0;1mUPDATE "estimated_payments" SET "updated_at" = '2011-04-15 12:22:34', "amount" = 10000.0 WHERE "id" = 142[0m
+  [4;35;1mEstimatedPayment Load (1.3ms)[0m   [0mSELECT * FROM "estimated_payments" WHERE ("estimated_payments".schedule_id = 31) AND ( "estimated_payments".'payment_id' IS NULL ) [0m
+  [4;36;1mEstimatedPayment Load (1.1ms)[0m   [0;1mSELECT * FROM "estimated_payments" WHERE ("estimated_payments".schedule_id = 31) AND ( "estimated_payments".payment_id IS NOT NULL ) [0m
+  [4;35;1mEstimatedPayment Update (0.3ms)[0m   [0mUPDATE "estimated_payments" SET estimated_amount = 4000.0 WHERE ("estimated_payments"."id" IN (143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167,168,169,170,171,172,173,174,175,176,177)) [0m
+Completed in 33ms (View: 1, DB: 5) | 200 OK [http://127.0.0.1/schedules/31/payments/142/update_amount]
+
+
+Processing SchedulesController#show (for 127.0.0.1 at 2011-04-15 16:22:34) [GET]
+  Parameters: {"id"=>"31"}
+  [4;36;1mSchedule::Base Load (0.2ms)[0m   [0;1mSELECT * FROM "schedules" WHERE ("schedules"."id" = 31) [0m
+  [4;35;1mEstimatedPayment Load (2.1ms)[0m   [0mSELECT "estimated_payments".* FROM "estimated_payments" WHERE ("estimated_payments".schedule_id = 31) [0m
+Rendering template within layouts/application
+Rendering schedules/show
+  [4;36;1mEstimatedPayment Load (0.3ms)[0m   [0;1mSELECT * FROM "estimated_payments" WHERE ("estimated_payments".schedule_id = 31) AND ( "estimated_payments".payment_id IS NOT NULL ) [0m
+Completed in 90ms (View: 53, DB: 3) | 200 OK [http://127.0.0.1/schedules/31]
+
+
+Processing PaymentsController#override_estimated_amount (for 127.0.0.1 at 2011-04-15 16:23:48) [GET]
+  Parameters: {"schedule_id"=>"31", "id"=>"143"}
+  [4;35;1mEstimatedPayment Load (0.3ms)[0m   [0mSELECT * FROM "estimated_payments" WHERE ("estimated_payments"."id" = 143) [0m
+Rendered shared/_errors (0.4ms)
+Rendered payments/_override_estimated_amount (5.5ms)
+Completed in 17ms (View: 6, DB: 0) | 200 OK [http://127.0.0.1/schedules/31/payments/143/override_estimated_amount]
+
+
+Processing PaymentsController#update_amount (for 127.0.0.1 at 2011-04-15 16:23:51) [POST]
+  Parameters: {"authenticity_token"=>"3Cs6PSkXKDjCZT0+kvRuuWn+azwfgOukJV/3wgAH7kg=", "schedule_id"=>"31", "id"=>"143", "payment"=>{"amount"=>"3000"}}
+  [4;36;1mEstimatedPayment Load (0.2ms)[0m   [0;1mSELECT * FROM "estimated_payments" WHERE ("estimated_payments"."id" = 143) [0m
+  [4;35;1mSchedule::Base Load (0.2ms)[0m   [0mSELECT * FROM "schedules" WHERE ("schedules"."id" = 31) [0m
+  [4;36;1mEstimatedPayment Load (0.2ms)[0m   [0;1mSELECT * FROM "estimated_payments" WHERE ("estimated_payments".schedule_id = 31) AND ( "estimated_payments".payment_id IS NOT NULL ) [0m
+  [4;35;1mEstimatedPayment Load (8.0ms)[0m   [0mSELECT * FROM "estimated_payments" WHERE ("estimated_payments".schedule_id = 31) AND ( "estimated_payments".'payment_id' IS NULL ) [0m
+Rendered shared/_errors (3.8ms)
+Completed in 150ms (View: 7, DB: 9) | 200 OK [http://127.0.0.1/schedules/31/payments/143/update_amount]
+
+
+Processing PaymentsController#update_amount (for 127.0.0.1 at 2011-04-15 16:23:54) [POST]
+  Parameters: {"authenticity_token"=>"3Cs6PSkXKDjCZT0+kvRuuWn+azwfgOukJV/3wgAH7kg=", "schedule_id"=>"31", "id"=>"143", "payment"=>{"amount"=>"3000"}}
+  [4;36;1mEstimatedPayment Load (0.2ms)[0m   [0;1mSELECT * FROM "estimated_payments" WHERE ("estimated_payments"."id" = 143) [0m
+  [4;35;1mSchedule::Base Load (0.2ms)[0m   [0mSELECT * FROM "schedules" WHERE ("schedules"."id" = 31) [0m
+  [4;36;1mEstimatedPayment Load (0.4ms)[0m   [0;1mSELECT * FROM "estimated_payments" WHERE ("estimated_payments".schedule_id = 31) AND ( "estimated_payments".payment_id IS NOT NULL ) [0m
+  [4;35;1mEstimatedPayment Load (1.3ms)[0m   [0mSELECT * FROM "estimated_payments" WHERE ("estimated_payments".schedule_id = 31) AND ( "estimated_payments".'payment_id' IS NULL ) [0m
+Rendered shared/_errors (3.3ms)
+Completed in 33ms (View: 5, DB: 2) | 200 OK [http://127.0.0.1/schedules/31/payments/143/update_amount]
